@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script>
+            //https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
+            //https://github.com/hampusohlsson/browser-deeplink
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+            //setTimeout(function () { window.location = "https://emblemvault.com"; }, 25);
+            window.location = "emblem://"+getParameterByName("emb")
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
