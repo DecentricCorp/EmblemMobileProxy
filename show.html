@@ -20,7 +20,7 @@
             //window.location = "emblem://"+getParameterByName("emb")
             var links, redirect, weburl
             $( document ).ready(function(){                
-                if (getParameterByName("emb") && !getParameterByName("emb").includes('emb')) {
+                if (getParameterByName("emb") && !getParameterByName("emb").includes('EMB')) {
                     $.getJSON("./links.json").then(res=>{
                         links = res
                         //redirect = "emblem://"+links[getParameterByName("emb")].val
