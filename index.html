@@ -24,11 +24,13 @@
                     $.getJSON("./links.json").then(res=>{
                         links = res
                         redirect = "emblem://"+links[getParameterByName("emb")].val
+                        window.location = redirect
                     })
                 } else {
                     redirect = "emblem://"+getParameterByName("emb")
+                    window.location = redirect
                 }
-                console.log(redirect)
+                //console.log(redirect)
             })
             //window.location = redirect
         </script>
