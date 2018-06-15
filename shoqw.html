@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+        <script>
+            //https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
+            //https://github.com/hampusohlsson/browser-deeplink
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+            //setTimeout(function () { window.location = "https://emblemvault.com"; }, 25);
+            //window.location = "emblem://"+getParameterByName("emb")
+            var links, redirect, weburl
+            $( document ).ready(function(){                
+                if (getParameterByName("emb") && !getParameterByName("emb").includes('emb')) {
+                    $.getJSON("./links.json").then(res=>{
+                        links = res
+                        //redirect = "emblem://"+links[getParameterByName("emb")].val
+                        //weburl = "https://emblem.pro/show.html?emb="+links[getParameterByName("emb")].val
+                        //startApp()
+                        //window.location = redirect
+                        $(".info").text(links[getParameterByName("emb")].val)
+                    })
+                } else {
+                    $(".info").text(getParameterByName("emb"))
+                    //weburl = "https://emblem.pro/show.html?emb="+getParameterByName("emb")
+                    //startApp()
+                    //window.location = redirect
+                }
+                
+              var timeout;
+              function preventPopup() {
+                clearTimeout(timeout);
+                timeout = null;
+                window.removeEventListener('pagehide', preventPopup);
+              }
+              function startApp() {
+                window.location = redirect;
+                timeout = setTimeout(function(){
+                  if(confirm('You do not seem to have the App installed, do you want to go to the web version now?')){
+                    document.location = weburl;
+                  }
+                }, 1000);
+                window.addEventListener('pagehide', preventPopup);
+              }
+                //console.log(redirect)
+            })
+            //window.location = redirect
+            //var appurl = redirect
+            //var appstore = 'https://itunes.apple.com/us/app/your-app';
+
+          
+        </script>
+    </head>
+    <body>
+        View the contents of <div class="info"></div> Soon
+    </body>
+</html>
