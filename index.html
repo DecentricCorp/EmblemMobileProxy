@@ -18,16 +18,18 @@
             }
             //setTimeout(function () { window.location = "https://emblemvault.com"; }, 25);
             //window.location = "emblem://"+getParameterByName("emb")
-            var links, redirect
-            if (getParameterByName("emb") && !getParameterByName("emb").includes('emb')) {
-                $.getJSON("./links.json").then(res=>{
-                    links = res
-                    redirect = "emblem://"+links[getParameterByName("emb")].val
-                })
-            } else {
-                redirect = "emblem://"+getParameterByName("emb")
-            }
-            console.log(redirect)
+            $( document ).ready(function(){
+                var links, redirect
+                if (getParameterByName("emb") && !getParameterByName("emb").includes('emb')) {
+                    $.getJSON("./links.json").then(res=>{
+                        links = res
+                        redirect = "emblem://"+links[getParameterByName("emb")].val
+                    })
+                } else {
+                    redirect = "emblem://"+getParameterByName("emb")
+                }
+                console.log(redirect)
+            })
             //window.location = redirect
         </script>
     </head>
