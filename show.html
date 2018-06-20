@@ -1,9 +1,15 @@
 <html>
     <head>
         <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+        </script>
+        <script src="bower_components/jquery/dist/jquery.min.js" crossorigin="anonymous"></script>
+        <script src="semantic/dist/semantic.min.js"></script>
+        <script src="semantic/dist/components/accordion.min.js"></script>
+        <script src="bower_components/handlebars/handlebars.js"></script>
+        <script src="./emblem.js"></script>
         <script>
             //https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
             //https://github.com/hampusohlsson/browser-deeplink
@@ -28,9 +34,11 @@
                         //startApp()
                         //window.location = redirect
                         $(".info").text(links[getParameterByName("emb")].val)
+                        $(".ui.trophy.modal .name").html(links[getParameterByName("emb")].val)
                     })
                 } else {
                     $(".info").text(getParameterByName("emb"))
+                    $(".ui.trophy.modal .name").html(getParameterByName("emb"))
                     //weburl = "https://emblem.pro/show.html?emb="+getParameterByName("emb")
                     //startApp()
                     //window.location = redirect
@@ -59,8 +67,33 @@
 
           
         </script>
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="semantic/dist/components/accordion.min.css">
     </head>
     <body>
-        View the contents of <div class="info"></div> Soon
+        <!-- Trophy Case -->
+        <div class="ui trophy modal">
+                <i class="close icon"></i>
+                <div class="header">
+                    Emblem Vault
+                </div>
+                <div class="content">
+                    
+                    <div class="description">
+                    <div class="ui header">You are viewing the contents of Emblem Vault ID: <span class="name"></span></div>
+                    <div class="ui three column doubling grid container cats link cards"></div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <!-- <div class="ui black deny button">
+                    Nope
+                    </div> -->
+                    <div class="ui positive right labeled icon button">
+                    Share
+                    <i class="share icon"></i>
+                    </div>
+                </div>
+            </div>
+        <!-- View the contents of <div class="info"></div> Soon -->
     </body>
 </html>
