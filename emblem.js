@@ -43,6 +43,7 @@ function queryEmblemDetails(name){
                 })
                 var openSeaBalancePromise = getOpenSeaBalance(ethereumAddress)
                 openSeaBalancePromise.then(result=>{
+                    var resultLength = result.length
                     var assets = []
                     emblemDetails.collectableAssets = []
                     result.forEach(item=>{
@@ -67,9 +68,9 @@ function queryEmblemDetails(name){
                             if (index === propKeys.length - 1) {
                                 asset.propertyCollection = propertyCollection
                                 assets[assets.length] = asset
-                                //if (result.length === assets.length) {
+                                if (resultLength === assets.length) {
                                     assignProperty()
-                                //}
+                                }
                             }
 
                         })
